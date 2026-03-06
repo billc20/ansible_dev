@@ -1,6 +1,6 @@
 [group_dnf]
-172.16.1.12
+172.16.1.12 apache_package=httpd php_package=php
 
 [group_apt]
-172.16.1.13
-172.16.1.14
+172.16.1.13 apache_package=apache2 php_package=libapache2-mod-php
+172.16.1.14 apache_package=apache2 php_package=libapache2-mod-php

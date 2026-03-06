@@ -1,19 +1,24 @@
 ---
-- hosts: group_apt
+- hosts: all
   become: true
   tasks:
 
-  - name: update repository index
-    ansible.builtin.apt:
-      update_cache: yes
-
   - name: install apache2 package
     ansible.builtin.apt:
-      name: apache2
+      name: 
+        - apache2
+        - libapache2-mod-php
       state: latest
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
 
-  - name: install support for php
-    ansible.builtin.apt:
-      name: libapache2-mod-php
+  - name: install httpd package
+    ansible.builtin.dnf:
+      name: 
+        - httpd
+        - php
       state: latest
+      update_cache: yes
+    when: ansible_distribution == "Fedora"
+
 
