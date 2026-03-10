@@ -1,0 +1,33 @@
+# _*_ mode: ruby _*_
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION= "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # GEneral Vagrant VM Configuration
+  config.vm.box = "Rocky"
+  config.ssh.insert_key = false
+  config.vm.synced_folder ".", "/vagrant" , disabled: true
+  config.vm.provider :virtualbox do |v|
+    v.memory = 512
+    v.linked_clone = true
+  end
+
+  # Application server 1
+  config.vm.define "app5" do |app|
+    app.vm.hostname = "orc-app5.test"
+    app.vm.network :private_network, ip: "192.168.56.74"
+  end
+
+  # Application server 2
+  config.vm.define "app6" do |app|
+    app.vm.hostname = "orc-app6.test"
+    app.vm.network :private_network, ip: "192.168.56.75"
+  end
+
+  # Database server
+  config.vm.define "db" do |db|
+    db.vm.hostname = "orc-db3.test"
+    db.vm.network :private_network, ip: "192.168.56.76"
+  end
+end
