@@ -5,7 +5,7 @@ VAGRANTFILE_API_VERSION= "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # GEneral Vagrant VM Configuration
-  config.vm.box = "Rocky"
+  config.vm.box = "hashicorp/bionic64"
   config.ssh.insert_key = false
 #  config.ssh.username = "vagrant"
 #  config.ssh.password = "vagrant"
@@ -19,18 +19,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Application server 1
   config.vm.define "app7" do |app|
     app.vm.hostname = "orc-app7"
-    app.vm.network :private_network, ip: "192.168.56.94"
+    app.vm.network :private_network, ip: "192.168.56.84"
   end
 
   # Application server 2
   config.vm.define "app6" do |app|
     app.vm.hostname = "orc-app8"
-    app.vm.network :private_network, ip: "192.168.56.95"
+    app.vm.network :private_network, ip: "192.168.56.85"
   end
 
   # Database server
   config.vm.define "db" do |db|
     db.vm.hostname = "orc-db4"
-    db.vm.network :private_network, ip: "192.168.56.96"
+    db.vm.network :private_network, ip: "192.168.56.86"
   end
 end
